@@ -3,14 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:VM="clr-namespace:UseMvvm.ViewModel;assembly=UseMvvm"
         xmlns:local="clr-namespace:Tools"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         xmlns:hc="https://handyorg.github.io/handycontrol"
-        Title="MainWindow" Height="600" Width="800">
+        Title="Tools" Height="600" Width="800">
+    <Window.Resources>
+        <Style TargetType="hc:TabItem" BasedOn="{StaticResource {x:Type hc:TabItem}}" x:Key="CustomTabItemStyle">
+            <!-- 在此仅添加或覆盖要修改的属性 -->
+            <!--<Setter Property="Background" Value="#你想要的背景颜色"/>
+            <Setter Property="Foreground" Value="#你想要的前景颜色"/>-->
+            <!-- ...其他属性设置 -->
+        </Style>
+    </Window.Resources>
     <Grid>
-
+        <TabControl Style="{StaticResource TabControlInLine}" ItemsSource="{Binding TabItems}" TabStripPlacement="Left">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TabItem Header="{Binding Header}">
+                        <Grid>
+                             <!--自定义样式或内容-->
+                            <TextBlock Width="60" Height="60" Text="{Binding Content}"/>
+                        </Grid>
+                    </TabItem>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <!--<TabItem Header="hala">
+                <Grid Style="{StaticResource TabItemBgc}">
+                    <TextBox Text="{Binding Hala, UpdateSourceTrigger=PropertyChanged}"  Width="300" Height="50" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="hala2">
+            </TabItem>-->
+            
+        </TabControl>
     </Grid>
 </Window>
