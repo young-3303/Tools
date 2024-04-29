@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tools.UserControls;
 using UseMvvm.ViewModel;
 namespace Tools
 {
@@ -24,6 +26,21 @@ namespace Tools
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            NavigationListBox.DataContext = this;
+            NavigationItems = new ObservableCollection<NavigationItemViewModel>
+            {
+                new NavigationItemViewModel
+                {
+                    Name = "定时关机",
+                    Content = new Shutdown()
+                },
+                new NavigationItemViewModel
+                {
+                    Name = "setting2"
+                },
+            };
+            NavigationListBox.SelectedIndex = 0;
         }
+        public ObservableCollection<NavigationItemViewModel> NavigationItems { get; set; }
     }
 }
