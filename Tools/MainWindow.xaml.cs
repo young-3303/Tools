@@ -32,7 +32,9 @@ namespace Tools
                 new NavigationItemViewModel
                 {
                     Name = "定时关机",
-                    Content = new Shutdown()
+                    Content = new Shutdown(){
+                       
+                    }
                 },
                 new NavigationItemViewModel
                 {

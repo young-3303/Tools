@@ -19,4 +19,16 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style x:Key="ExtendedButtonD" TargetType="Button" BasedOn="{StaticResource ButtonDanger}">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style x:Key="ExtendedButtonS" TargetType="Button" BasedOn="{StaticResource ButtonSuccess}">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style x:Key="ExtendedButtonP" TargetType="Button" BasedOn="{StaticResource ButtonPrimary}">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
 </ResourceDictionary>

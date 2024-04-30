@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UseMvvm.ViewModel;
 
 namespace Tools.UserControls
 {
@@ -23,6 +24,7 @@ namespace Tools.UserControls
         public Shutdown()
         {
             InitializeComponent();
+            //DataContext = new MainViewModel();
         }
     }
 }
