@@ -4,10 +4,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Shared.Helper;
 
 namespace UseMvvm.ViewModel
 {
@@ -16,11 +18,32 @@ namespace UseMvvm.ViewModel
         public MainViewModel()
         {
         }
-        [RelayCommand(CanExecute = nameof(CanBtnEnable))]
+        [RelayCommand]
+        private void Terminate(string flag)
+        {
+            ScheduleShutdownOrRestart(flag);
+        }
+        [RelayCommand]
+        //[RelayCommand(CanExecute = nameof(CanBtnEnable))]
         private void BtnClick(object flag)
         {
-            ScheduleShutdownOrRestart(flag as string);
-            hour = null;
+            Regex regex = new Regex("[^0-9]+");
+            Console.WriteLine(CanBtnEnable());
+            //Console.WriteLine(regex.IsMatch(Hour));
+            //value = regex.IsMatch(value) ? null : value;
+            if (CanBtnEnable())
+            {
+                MsgBoxHelper.Warning("请输入大于零的整数");
+            }
+            else if(regex.IsMatch(Hour))
+            {
+                MsgBoxHelper.Warning("请输入大于零的整数");
+            }
+            else
+            {
+                ScheduleShutdownOrRestart(flag as string);
+                Hour = null;
+            }
         }
         public class MyTabItemModel
         {
@@ -28,8 +51,6 @@ namespace UseMvvm.ViewModel
             public string Content { get; set; }
             // 你可以添加更多属性来表示TabItem上需要绑定的数据
         }
-        [ObservableProperty]
-        public string hala = "233";
         [ObservableProperty]
         public List<MyTabItemModel> tabItems = new List<MyTabItemModel>() {
             new MyTabItemModel { Header = "hala1", Content = "Content1" },
@@ -51,17 +72,15 @@ namespace UseMvvm.ViewModel
         public string Hour { 
             get => hour;
             set {
-                Regex regex = new Regex("[^0-9]+");
-                value = regex.IsMatch(value) ? null : value;
                 SetProperty(ref hour, value);
-                BtnClickCommand.NotifyCanExecuteChanged();
+                //BtnClickCommand.NotifyCanExecuteChanged();
             }   
             
         }
         private void ScheduleShutdownOrRestart(string flag)
         {
             int seconds = 0;
-            seconds = int.Parse(hour) * 3600; // 将小时转换为秒
+            if(!string.IsNullOrWhiteSpace(hour)) seconds = int.Parse(hour) * 3600; // 将小时转换为秒
             try
             {
                 using (Process process = new Process())
@@ -92,7 +111,7 @@ namespace UseMvvm.ViewModel
         }
         private bool CanBtnEnable()
         {
-            return !string.IsNullOrWhiteSpace(Hour);
+            return string.IsNullOrWhiteSpace(Hour);
         }
     }
 }

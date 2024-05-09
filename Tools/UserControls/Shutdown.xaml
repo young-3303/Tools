@@ -20,7 +20,7 @@
             <WrapPanel Margin="0,20,0,0" HorizontalAlignment="Center">
                 <Button Style="{StaticResource ExtendedButtonD}" Content="关机" Margin="0,0,10,0" Command="{Binding BtnClickCommand}" CommandParameter="shutdown"/>
                 <Button Style="{StaticResource ExtendedButtonS}" Content="重启" Margin="0,0,10,0" Command="{Binding BtnClickCommand}" CommandParameter="restart"/>
-                <Button Style="{StaticResource ExtendedButtonP}" Content="清除关机状态" Command="{Binding BtnClickCommand}" CommandParameter="clear" />
+                <Button Style="{StaticResource ExtendedButtonP}" Content="清除关机状态" Command="{Binding TerminateCommand}" CommandParameter="clear" />
             </WrapPanel>
         </StackPanel>
     </Grid>
