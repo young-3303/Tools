@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -14,7 +15,6 @@ namespace UseMvvm.ViewModel
     {
         public MainViewModel()
         {
-           
         }
         [RelayCommand(CanExecute = nameof(CanBtnEnable))]
         private void BtnClick(object flag)
@@ -54,6 +54,7 @@ namespace UseMvvm.ViewModel
                 Regex regex = new Regex("[^0-9]+");
                 value = regex.IsMatch(value) ? null : value;
                 SetProperty(ref hour, value);
+                BtnClickCommand.NotifyCanExecuteChanged();
             }   
             
         }
@@ -91,7 +92,7 @@ namespace UseMvvm.ViewModel
         }
         private bool CanBtnEnable()
         {
-            return hour is not null;
+            return !string.IsNullOrWhiteSpace(Hour);
         }
     }
 }

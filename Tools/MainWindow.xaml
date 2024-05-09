@@ -52,7 +52,8 @@
             </ListBox.ItemContainerStyle>-->
         </ListBox>
         <!-- Content area where the selected content is shown -->
-        <ContentControl ContentTemplate="{StaticResource ContentPresenter}"
+        <ContentControl
+            ContentTemplate="{StaticResource ContentPresenter}"
                         Content="{Binding SelectedItem.Content, ElementName=NavigationListBox}"
                         />
     </DockPanel>
