@@ -38,11 +38,22 @@ namespace Tools
                 },
                 new NavigationItemViewModel
                 {
-                    Name = "setting2"
+                    Name = "setting2",
+                    Content = new Information(){}
                 },
             };
             NavigationListBox.SelectedIndex = 0;
         }
         public ObservableCollection<NavigationItemViewModel> NavigationItems { get; set; }
+
+        private void Mini(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ShutdownApp(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +18,7 @@ namespace UseMvvm.ViewModel
     {
         public MainViewModel()
         {
+            
         }
         [RelayCommand]
         private void Terminate(string flag)
@@ -113,5 +115,17 @@ namespace UseMvvm.ViewModel
         {
             return string.IsNullOrWhiteSpace(Hour);
         }
+        public class PropertyGridDemoModel
+        {
+            [Category("系统信息")]
+            public string 操作系统 { get; set; }
+            [Category("系统信息")]
+            public string String { get; set; }
+        }
+        [ObservableProperty]
+        private PropertyGridDemoModel demoModel = new PropertyGridDemoModel
+        {
+            //String = "TestString",
+        };
     }
 }

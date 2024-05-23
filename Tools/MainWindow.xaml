@@ -31,30 +31,47 @@
             <ContentControl Content="{Binding SelectedItem.Content, ElementName=NavigationListBox}"/>
         </DataTemplate>
     </Window.Resources>
-    <DockPanel>
-        <ListBox x:Name="NavigationListBox"
-                 DockPanel.Dock="Left"
-                 Width="180"
-                 ItemsSource="{Binding NavigationItems}"
-                 DisplayMemberPath="Name"
-                 SelectedValuePath="Content">
-            <!--<ListBox.ItemContainerStyle>
-            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-            <Setter Property="Background" Value="Red"/>
-            <Setter Property="Foreground" Value="White"/>
-            </Trigger>
-            </Style.Triggers>
-            </Style>
-            </ListBox.ItemContainerStyle>-->
-        </ListBox>
-        <!-- Content area where the selected content is shown -->
-        <ContentControl
-            ContentTemplate="{StaticResource ContentPresenter}"
-                        Content="{Binding SelectedItem.Content, ElementName=NavigationListBox}"
-                        />
-    </DockPanel>
+    <WindowChrome.WindowChrome>
+        <WindowChrome x:Name="windowChrome" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Background="#3e4a63">
+            <WrapPanel HorizontalAlignment="Right">
+                <Button Click="Mini" Width="30" Height="30" Margin="0,0,5,0" HorizontalAlignment="Right" Content="-" Foreground="#fff" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource btnNap}">
+                </Button>
+                <Button Click="ShutdownApp" Width="30" Height="30" Margin="0,0,5,0" HorizontalAlignment="Right" Content="x" Foreground="#fff" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource btnNap}">
+                </Button>
+            </WrapPanel>
+        </Grid>
+        <DockPanel Grid.Row="1">
+            <ListBox x:Name="NavigationListBox"
+                     DockPanel.Dock="Left"
+                     Width="180"
+                     ItemsSource="{Binding NavigationItems}"
+                     DisplayMemberPath="Name"
+                     SelectedValuePath="Content">
+                <!--<ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="Red"/>
+                <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                </Style.Triggers>
+                </Style>
+                </ListBox.ItemContainerStyle>-->
+            </ListBox>
+            <!-- Content area where the selected content is shown -->
+            <ContentControl
+                ContentTemplate="{StaticResource ContentPresenter}"
+                Content="{Binding SelectedItem.Content, ElementName=NavigationListBox}"
+                />
+        </DockPanel>
+    </Grid>
 </Window>

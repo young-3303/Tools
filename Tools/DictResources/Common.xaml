@@ -31,4 +31,26 @@
     <Style x:Key="ExtendedButtonP" TargetType="Button" BasedOn="{StaticResource ButtonPrimary}">
         <Setter Property="Cursor" Value="Hand" />
     </Style>
+    <Style x:Key="btnNap" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.7" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#5b6983" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
